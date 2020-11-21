@@ -64,10 +64,10 @@
         </el-menu>
       </el-aside>
       <el-container>
-        <el-header style="text-align: right; font-size: 12px">
+        <el-header style="text-align: right; font-size: 12px; border-bottom: 2px dashed rgb(230,230,230)">
           <el-button
             class="top"
-            type="info"
+            type=""
             style="float: right"
             @click="logout"
             >安全退出</el-button
@@ -86,11 +86,7 @@
 <script>
 export default {
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄",
-    };
+    const item = {};
     return {
       tableData: Array(20).fill(item),
     };
@@ -108,13 +104,13 @@ export default {
 
 <style>
 .el-header {
-  background-color: #b3c0d1;
+  background-color: #ffffff;
   color: #333;
   line-height: 60px;
 }
 
 .el-aside {
-  color: #333;
+  color: rgb(255, 255, 255);
 }
 .top {
   margin-top: 10px;
