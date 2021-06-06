@@ -85,8 +85,10 @@ const router = new VueRouter({
 // 加一个路由守卫
 router.beforeEach((to,from,next)=>{
   if (!to.meta.isPublic && !localStorage.token) {
-    // console.log('go');
     return next('/login')
+  }
+  if (to.path === '/login' && localStorage.token) {
+    return next('/')
   }
   next()
 })

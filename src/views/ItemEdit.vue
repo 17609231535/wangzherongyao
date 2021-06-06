@@ -53,16 +53,25 @@ export default {
     },
     async save() {
       let res;
+      let permissions = false;
       if (this.id) {
         res = await this.$http.put(`rest/items/${this.id}`, this.model);
+        permissions = true;
       } else {
-        res = await this.$http.post("rest/items", this.model);
+        if (this.model.icon && this.model.name) {
+          res = await this.$http.post("rest/items", this.model);
+          permissions = true;
+        } else {
+          this.$message.error("请填写名称和图标");
+        }
       }
-      this.$router.push("/items/list");
-      this.$message({
-        type: "success",
-        message: "保存成功",
-      });
+      if (permissions) {
+        this.$router.push("/items/list");
+        this.$message({
+          type: "success",
+          message: "保存成功",
+        });
+      }
     },
     // 有ID的话就会执行这个
     async fetch() {

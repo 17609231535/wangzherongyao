@@ -35,7 +35,8 @@ export default {
     },
     // 删除
     async remove(row) {
-      this.$confirm(`是否确定要删除【${row.name}】`, "提示", {
+      console.log(row);
+      this.$confirm(`是否确定要删除【${row.username}】`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
