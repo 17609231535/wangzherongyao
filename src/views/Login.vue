@@ -27,7 +27,8 @@ export default {
     async login() {
       const res = await this.$http.post("login", this.model);
       // localStorage就是浏览器缓存,下次打开有缓存
-      localStorage.token = res.data.token;
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('info', JSON.stringify(this.model));
       // sessionStorage就是浏览器不缓存,下次打开无缓存
       // sessionStorage.token = res.data.token;
       this.$router.push("/");

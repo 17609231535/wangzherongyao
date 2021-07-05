@@ -7,13 +7,13 @@ const http = axios.create({
   baseURL: 'http://localhost:3000/admin/api'
 })
 //这里我们给请求头加一个参数用于显示登录密钥信息
-http.interceptors.request.use(function (config) {
+http.interceptors.request.use((config) => {
   if (localStorage.token) {
     //注意'Bearer '这里有空格用于接下来做的分割处理
     config.headers.Authorization = 'Bearer ' + localStorage.token
   }
   return config;
-}, function (error) {
+}, (error) => {
   // Do something with request error
   return Promise.reject(error);
 });

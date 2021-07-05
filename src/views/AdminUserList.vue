@@ -31,11 +31,11 @@ export default {
     // 用于 从服务器获取最新的数据
     async fetch() {
       const res = await this.$http.get("rest/admin_user");
-      this.items = res.data;
+      const info = JSON.parse(localStorage.getItem('info'))
+      this.items = res.data.filter(item => item.username !== info.username);
     },
     // 删除
     async remove(row) {
-      console.log(row);
       this.$confirm(`是否确定要删除【${row.username}】`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",

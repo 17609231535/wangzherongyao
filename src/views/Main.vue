@@ -65,20 +65,18 @@
       </el-aside>
       <el-container>
         <el-header style="text-align: right; font-size: 12px; border-bottom: 2px dashed rgb(230,230,230)">
-          <el-button
-            class="top"
-            type=""
-            style="float: right"
-            @click="logout"
-            >安全退出</el-button
-          >
+          <el-dropdown size="mini" split-button type="primary">
+            {{info}}
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item> <span @click="logout">安全退出</span></el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </el-header>
         <el-main>
           <!-- 子路由容器 -->
-          <!-- 这里渲染的是本页面的跳转组件 -->
           <router-view></router-view>
         </el-main>
-      </el-container>
+      </el-container>heroes
     </el-container>
   </div>
 </template>
@@ -88,8 +86,13 @@ export default {
   data() {
     const item = {};
     return {
+      info: null,
       tableData: Array(20).fill(item),
     };
+  },
+  created() {
+    const info = JSON.parse(localStorage.getItem('info'));
+    this.info = info.username;
   },
   methods: {
     logout() {
